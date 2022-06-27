@@ -1,21 +1,24 @@
 import os
 from nn import Perceptron
 
-percep_nn = Perceptron()
-percep_nn.learn(n=50, save=True)
+def check(x):
+    if (x != 0 and x != 1):
+        print('Please the values must be 0 or 1')
+        return False
+    return True
+
+nn = Perceptron()
+nn.learn(n=50, save=True)
 
 while True:
-    # Testing phase
     print('Input first value:')
     x = int(input())
+    if not check(x): continue
+
     print('Input second value:')
     y = int(input())
-    weights = percep_nn.weights
-    outputP = x * weights[0] + y * weights[1] + percep_nn.bias * weights[2]
-    if outputP > 0:  # activation function
-        outputP = 1
-    else:
-        outputP = 0
-    print(x, "or", y, "is : ", outputP)
+    if not check(x): continue
+
+    print(x, "or", y, "is : ", nn.perceptron(x,y))
 
     if input('Continue? (y, n) ') == 'n': exit()

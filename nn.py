@@ -47,3 +47,8 @@ class Perceptron:
 
         if save:
             numpy.savetxt("Data/%dtrained.csv" % n, self.weights, delimiter=',')
+
+    def perceptron(self, x, y):
+        outputP = x * self.weights[0] + y * self.weights[1] + self.bias * self.weights[2]
+        return 1 if outputP > 0 else 0
+
